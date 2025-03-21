@@ -53,7 +53,8 @@ function! db#adapter#sqlserver#interactive(url) abort
 endfunction
 
 function! db#adapter#sqlserver#input(url, in) abort
-  return db#adapter#sqlserver#interactive(a:url) + ['-i', a:in]
+  let path = substitute(a:in, "/", "\\", "g")
+  return db#adapter#sqlserver#interactive(a:url) + ['-i', path]
 endfunction
 
 function! db#adapter#sqlserver#dbext(url) abort
